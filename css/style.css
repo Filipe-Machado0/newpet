@@ -686,7 +686,7 @@ button {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 4 / 4.4;
   background: var(--primary-soft);
 }
 
@@ -694,7 +694,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center center;
   transition: transform 0.4s ease;
 }
 
@@ -821,7 +821,7 @@ button {
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 4 / 3.7;
   margin-bottom: 18px;
   background: var(--primary-soft);
 }
@@ -830,6 +830,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform 0.4s ease;
 }
 
@@ -971,6 +972,126 @@ button {
   background: var(--whatsapp);
   color: #ffffff;
   transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Dogs Gallery Section (Trabalhos Reais)
+   ========================================================================== */
+.dogs-gallery-section {
+  padding: 84px 0 90px;
+  background: var(--bg-alt);
+}
+
+.gallery-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 38px;
+}
+
+.gallery-filter-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 700;
+  background: #ffffff;
+  color: var(--secondary);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.gallery-filter-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary-tint);
+}
+
+.gallery-filter-btn.is-active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(123, 63, 160, 0.35);
+}
+
+.dogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.dog-photo-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dog-photo-card.is-hidden {
+  display: none;
+}
+
+.dog-photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-tint);
+}
+
+.dog-photo-card__img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--primary-soft);
+}
+
+.dog-photo-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.4s ease;
+}
+
+.dog-photo-card:hover .dog-photo-card__img-wrap img {
+  transform: scale(1.05);
+}
+
+.dog-photo-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(30, 20, 36, 0.88);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+}
+
+.dog-photo-card__info {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dog-photo-card__name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.dog-photo-card__desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
 }
 
 /* ==========================================================================

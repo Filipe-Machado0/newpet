@@ -49,6 +49,7 @@
         <ul class="header__links">
           <li><a href="#inicio" class="header__link is-active">Início</a></li>
           <li><a href="#servicos" class="header__link">Serviços</a></li>
+          <li><a href="#galeria" class="header__link">Galeria</a></li>
           <li><a href="#diferenciais" class="header__link">Diferenciais</a></li>
           <li><a href="#loja" class="header__link">Loja Pet</a></li>
           <li><a href="#veterinario" class="header__link">Veterinário</a></li>
@@ -115,6 +116,12 @@
             <a href="#servicos" class="mobile-drawer__link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
               <span>Serviços de Banho &amp; Tosa</span>
+            </a>
+          </li>
+          <li>
+            <a href="#galeria" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Galeria de Pets</span>
             </a>
           </li>
           <li>
@@ -260,7 +267,7 @@
         <!-- Serviço 01: Banhos -->
         <article class="service-card">
           <div class="service-card__image-wrap">
-            <img src="assets/images/IMG_4832.webp" alt="Pet após banho na New Pet" loading="lazy">
+            <img src="assets/images/IMG_4796.webp" alt="Pet após banho na New Pet" loading="lazy">
             <span class="service-card__badge-cat">Higiene &amp; Saúde</span>
           </div>
 
@@ -312,7 +319,7 @@
         <!-- Serviço 02: Tosa Bebê -->
         <article class="service-card">
           <div class="service-card__image-wrap">
-            <img src="assets/images/IMG_7490.webp" alt="Tosa bebê na tesoura New Pet" loading="lazy">
+            <img src="assets/images/IMG_8240(1).webp" alt="Tosa bebê na tesoura New Pet" loading="lazy">
             <span class="service-card__badge-cat">100% Tesoura</span>
           </div>
 
@@ -364,7 +371,7 @@
         <!-- Serviço 03: Trimming de Spitz -->
         <article class="service-card service-card--featured">
           <div class="service-card__image-wrap">
-            <img src="assets/images/IMG_8765.webp" alt="Spitz Alemão após trimming na New Pet" loading="lazy">
+            <img src="assets/images/IMG_3385.webp" alt="Spitz Alemão após trimming na New Pet" loading="lazy">
             <span class="service-card__badge-cat">Especialistas na Raça</span>
           </div>
 
@@ -416,7 +423,7 @@
         <!-- Serviço 04: Tosa na Lâmina com Rostinho -->
         <article class="service-card">
           <div class="service-card__image-wrap">
-            <img src="assets/images/IMG_6937.webp" alt="Tosa na lâmina com rostinho bebê na New Pet" loading="lazy">
+            <img src="assets/images/IMG_8242.webp" alt="Tosa na lâmina com rostinho bebê na New Pet" loading="lazy">
             <span class="service-card__badge-cat">Praticidade &amp; Charme</span>
           </div>
 
@@ -468,7 +475,7 @@
         <!-- Serviço 05: Tosa Completa na Lâmina -->
         <article class="service-card">
           <div class="service-card__image-wrap">
-            <img src="assets/images/IMG_8666.webp" alt="Tosa completa na lâmina na New Pet" loading="lazy">
+            <img src="assets/images/IMG_7625.webp" alt="Tosa completa na lâmina na New Pet" loading="lazy">
             <span class="service-card__badge-cat">Higiene &amp; Alívio</span>
           </div>
 
@@ -516,6 +523,153 @@
             </div>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== GALERIA DE RESULTADOS (CÃES DA NEW PET) ==================== -->
+  <section class="dogs-gallery-section" id="galeria">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Galeria de Focinhos</span>
+        <h2 class="section-title">Resultados reais com amor e respeito</h2>
+        <p class="section-desc">
+          Fotos autênticas dos nossos clientes de quatro patas em Araxá após os cuidados de banho, hidratação e tosa.
+        </p>
+      </div>
+
+      <!-- Filtros da Galeria -->
+      <div class="gallery-filters" id="galleryFilterGroup">
+        <button type="button" class="gallery-filter-btn is-active" data-filter="todos">Todos os Focinhos</button>
+        <button type="button" class="gallery-filter-btn" data-filter="banho">Banhos &amp; Higiene</button>
+        <button type="button" class="gallery-filter-btn" data-filter="tosa-bebe">Tosa Bebê</button>
+        <button type="button" class="gallery-filter-btn" data-filter="spitz">Trimming de Spitz</button>
+        <button type="button" class="gallery-filter-btn" data-filter="rostinho">Tosa Rostinho</button>
+        <button type="button" class="gallery-filter-btn" data-filter="completa">Tosa Completa</button>
+      </div>
+
+      <!-- Grid de Fotos dos Cachorros -->
+      <div class="dogs-grid" id="dogsGalleryGrid">
+        <!-- Foto 1: Maltês Banho -->
+        <div class="dog-photo-card" data-category="banho">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_4796.webp" alt="Maltês branquinho e cheiroso após banho na New Pet" loading="lazy">
+            <span class="dog-photo-card__badge">Banho &amp; Hidratação</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Nina &bull; Maltês</h4>
+            <span class="dog-photo-card__desc">Pelagem macia, desembaraçada e lacinhos rosa delicados.</span>
+          </div>
+        </div>
+
+        <!-- Foto 2: Shih Tzu Tosa Bebê Verde -->
+        <div class="dog-photo-card" data-category="tosa-bebe">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_8297(1).webp" alt="Shih Tzu preto e branco com tosa bebê na tesoura" loading="lazy">
+            <span class="dog-photo-card__badge">Tosa Bebê Tesoura</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Thor &bull; Shih Tzu</h4>
+            <span class="dog-photo-card__desc">Visual fofinho preservado à mão na tesoura e gravatinha New Pet.</span>
+          </div>
+        </div>
+
+        <!-- Foto 3: Spitz Trimming Fofo -->
+        <div class="dog-photo-card" data-category="spitz">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_3385.webp" alt="Spitz Alemão com trimming volumoso impecável" loading="lazy">
+            <span class="dog-photo-card__badge">Trimming Técnico</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Loki &bull; Spitz Alemão (Lulu)</h4>
+            <span class="dog-photo-card__desc">Remoção de subpelo morto sem raspar, mantendo o volume saudável.</span>
+          </div>
+        </div>
+
+        <!-- Foto 4: Shih Tzu Tosa Bebê Gravatinha -->
+        <div class="dog-photo-card" data-category="tosa-bebe">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_8240(1).webp" alt="Shih Tzu com acabamento arredondado e gravatinha" loading="lazy">
+            <span class="dog-photo-card__badge">Tosa Bebê Tesoura</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Mel &bull; Shih Tzu</h4>
+            <span class="dog-photo-card__desc">Corpinho alinhado e rostinho meigo sem tirar o charme da raça.</span>
+          </div>
+        </div>
+
+        <!-- Foto 5: Tosa Rostinho com Lacinhos Amarelos -->
+        <div class="dog-photo-card" data-category="rostinho">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_8242.webp" alt="Tosa na lâmina com rostinho bebê delicado" loading="lazy">
+            <span class="dog-photo-card__badge">Tosa com Rostinho</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Luna &bull; Shih Tzu</h4>
+            <span class="dog-photo-card__desc">Corpinho prático na lâmina e rostinho carinhoso modelado na tesoura.</span>
+          </div>
+        </div>
+
+        <!-- Foto 6: Tosa Completa Gravatinha Yoshi -->
+        <div class="dog-photo-card" data-category="completa">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_7625.webp" alt="Cãozinho com tosa completa na lâmina e gravatinha Yoshi" loading="lazy">
+            <span class="dog-photo-card__badge">Tosa Completa</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Bob &bull; SRD</h4>
+            <span class="dog-photo-card__desc">Pelagem curta, frescor absoluto e conforto térmico garantido.</span>
+          </div>
+        </div>
+
+        <!-- Foto 7: Banho Pelagem Escura -->
+        <div class="dog-photo-card" data-category="banho">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_4832.webp" alt="Pet pelagem preta brilhante após banho e hidratação" loading="lazy">
+            <span class="dog-photo-card__badge">Banho &amp; Brilho</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Amora &bull; Shih Tzu</h4>
+            <span class="dog-photo-card__desc">Nutrição e brilho intenso da pelagem escura com shampoo específico.</span>
+          </div>
+        </div>
+
+        <!-- Foto 8: Tosa Completa com Bandana -->
+        <div class="dog-photo-card" data-category="completa">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_8666.webp" alt="Pet com tosa completa e bandana laranja" loading="lazy">
+            <span class="dog-photo-card__badge">Tosa Completa</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Pipoca &bull; SRD</h4>
+            <span class="dog-photo-card__desc">Higiene caprichada, unhas aparadas e sensação de leveza total.</span>
+          </div>
+        </div>
+
+        <!-- Foto 9: Spitz Alemão Perfil -->
+        <div class="dog-photo-card" data-category="spitz">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_8354.webp" alt="Spitz Alemão perfil de trimming" loading="lazy">
+            <span class="dog-photo-card__badge">Trimming Especializado</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Teddy &bull; Spitz Alemão</h4>
+            <span class="dog-photo-card__desc">Simetria impecável, contornos das patinhas e bumbum arredondado.</span>
+          </div>
+        </div>
+
+        <!-- Foto 10: Tosa Rostinho Carinhoso -->
+        <div class="dog-photo-card" data-category="rostinho">
+          <div class="dog-photo-card__img-wrap">
+            <img src="assets/images/IMG_6937.webp" alt="Rostinho bebê arredondado na tesoura" loading="lazy">
+            <span class="dog-photo-card__badge">Rostinho Bebê</span>
+          </div>
+          <div class="dog-photo-card__info">
+            <h4 class="dog-photo-card__name">Bidu &bull; Shih Tzu</h4>
+            <span class="dog-photo-card__desc">Bigodinho alinhado, olhos livres de pelos e expressão doce.</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -129,4 +129,30 @@
     });
   });
 
+  // --- Dogs Gallery Filtering ---
+  const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const dogCards = document.querySelectorAll('.dog-photo-card');
+
+  if (galleryFilterBtns.length > 0 && dogCards.length > 0) {
+    galleryFilterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const filter = btn.getAttribute('data-filter');
+
+        galleryFilterBtns.forEach(function (b) {
+          b.classList.remove('is-active');
+        });
+        btn.classList.add('is-active');
+
+        dogCards.forEach(function (card) {
+          const category = card.getAttribute('data-category');
+          if (filter === 'todos' || category === filter) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  }
+
 })();
