@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>New Pet Banho e Tosa • Araxá - MG</title>
+  <meta name="description" content="Banho, tosa bebê na tesoura, trimming de Spitz e atendimento veterinário em Araxá - MG. Cuidado de verdade, do banho ao último acabamento. Agende online!">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="New Pet Banho e Tosa • Araxá - MG">
+  <meta property="og:description" content="Cuidado individualizado, tosa na tesoura, trimming de Spitz, loja completa e atendimento veterinário. Agende online sem espera!">
+  <meta property="og:image" content="assets/images/logo-clean.png">
+  <meta property="og:type" content="website">
+
+  <!-- Mobile & PWA -->
+  <meta name="theme-color" content="#7b3fa0">
+  <link rel="icon" type="image/png" href="assets/images/logo-clean.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking-modal.css">
+
+  <!-- Supabase CDN (opcional para persistência em nuvem) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAV ==================== -->
+  <header class="header" id="mainHeader">
+    <div class="container header__nav">
+      <!-- Brand Logo -->
+      <a href="#inicio" class="header__logo">
+        <div class="header__logo-badge">
+          <img src="assets/images/logo-clean.png" alt="New Pet Logo" class="header__logo-img">
+        </div>
+        <div class="header__logo-text">
+          <span class="header__brand-title">new pet</span>
+          <span class="header__brand-subtitle">Banho e Tosa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="header__nav-menu" id="headerNavMenu">
+        <ul class="header__links">
+          <li><a href="#inicio" class="header__link is-active">Início</a></li>
+          <li><a href="#servicos" class="header__link">Serviços</a></li>
+          <li><a href="#diferenciais" class="header__link">Diferenciais</a></li>
+          <li><a href="#loja" class="header__link">Loja Pet</a></li>
+          <li><a href="#veterinario" class="header__link">Veterinário</a></li>
+          <li><a href="#horarios" class="header__link">Horários</a></li>
+          <li><a href="#avaliacoes" class="header__link">Avaliações</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header__actions">
+        <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="btn-nav-wa" title="Chamar no WhatsApp (34) 9 9706-3456">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+          <span class="btn-nav-wa__text">(34) 9 9706-3456</span>
+        </a>
+
+        <button type="button" class="btn-nav-booking" data-open-booking>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Agendar Online</span>
+        </button>
+
+        <!-- Quick Booking Pill on Mobile -->
+        <button type="button" class="btn-mobile-quick-book" data-open-booking aria-label="Agendar Horário">
+          <span>Agendar</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="mobile-toggle" id="mobileMenuBtn" aria-label="Abrir Menu">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu (Slide-in) - Direto no Body fora do header -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer__backdrop" id="mobileDrawerBackdrop"></div>
+    <div class="mobile-drawer__panel">
+      <div class="mobile-drawer__header">
+        <div class="header__logo">
+          <div class="header__logo-badge">
+            <img src="assets/images/logo-clean.png" alt="New Pet Logo" class="header__logo-img">
+          </div>
+          <div class="header__logo-text">
+            <span class="header__brand-title">new pet</span>
+            <span class="header__brand-subtitle">Banho e Tosa</span>
+          </div>
+        </div>
+        <button type="button" class="mobile-drawer__close" id="mobileDrawerClose" aria-label="Fechar Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="mobile-drawer__body">
+        <ul class="mobile-drawer__links">
+          <li>
+            <a href="#inicio" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <span>Início</span>
+            </a>
+          </li>
+          <li>
+            <a href="#servicos" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+              <span>Serviços de Banho &amp; Tosa</span>
+            </a>
+          </li>
+          <li>
+            <a href="#diferenciais" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Diferenciais &amp; Cuidados</span>
+            </a>
+          </li>
+          <li>
+            <a href="#loja" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>Loja Pet &amp; Farmácia</span>
+            </a>
+          </li>
+          <li>
+            <a href="#veterinario" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              <span>Atendimento Veterinário</span>
+            </a>
+          </li>
+          <li>
+            <a href="#horarios" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Horários em Araxá</span>
+            </a>
+          </li>
+          <li>
+            <a href="#avaliacoes" class="mobile-drawer__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>Depoimentos de Tutores</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="mobile-drawer__actions">
+          <button type="button" class="btn-drawer-booking" data-open-booking>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Agendar Horário Online</span>
+          </button>
+
+          <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" class="btn-drawer-whatsapp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>WhatsApp &bull; (34) 9 9706-3456</span>
+          </a>
+        </div>
+
+        <div class="mobile-drawer__footer">
+          <p><strong>New Pet Banho e Tosa</strong></p>
+          <p>Av. Honório de Paiva Abreu, 245 &bull; Araxá - MG</p>
+          <p class="drawer-hours">Seg: 12h às 18h | Ter a Sex: 8h às 18h | Sáb: 8h às 15h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="inicio">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-pulse"></span>
+          <span>Banho e tosa em Araxá &bull; Cuidado com Amor</span>
+        </div>
+
+        <h1 class="hero__title">
+          Cuidado de verdade, <span class="highlight">do banho ao último acabamento.</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          Cada pet recebe atenção individualizada, produtos adequados para a pele e pelagem, e um atendimento pensado com carinho para o conforto e a rotina do seu melhor amigo.
+        </p>
+
+        <!-- Highlights Pills -->
+        <div class="hero__highlights">
+          <div class="hero__highlight-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Atendimento 1 a 1</span>
+          </div>
+          <div class="hero__highlight-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Especialistas em Spitz</span>
+          </div>
+          <div class="hero__highlight-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Ambiente Tranquilo</span>
+          </div>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="hero__actions">
+          <button type="button" class="btn-primary" data-open-booking>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Agendar Horário Online</span>
+          </button>
+
+          <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20cuidados." target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Falar no WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="hero__trust-proof">
+          <div class="hero__stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span>Mais de <strong>500 tutores tranquilos</strong> e pets felizes em Araxá</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero__card">
+        <div class="hero__card-image-wrap">
+          <img src="assets/images/IMG_8297(1).webp" alt="Pet lindo e feliz após tosa bebê na New Pet">
+        </div>
+        <div class="hero__floating-badge">
+          <div class="hero__floating-info">
+            <strong>Feito com Carinho na New Pet</strong>
+            <span>Tosa bebê na tesoura &bull; Araxá - MG</span>
+          </div>
+          <span class="hero__floating-tag">100% Amor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVIÇOS EM CARDS ==================== -->
+  <section class="section-padding" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Nossos Cuidados</span>
+        <h2 class="section-title">Qual serviço combina com o seu pet?</h2>
+        <p class="section-desc">
+          Conheça as diferenças e veja nossos trabalhos reais. A indicação final é feita após avaliarmos a pele, a pelagem e as necessidades do pet.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Serviço 01: Banhos -->
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img src="assets/images/IMG_4832.webp" alt="Pet após banho na New Pet" loading="lazy">
+            <span class="service-card__badge-cat">Higiene &amp; Saúde</span>
+          </div>
+
+          <div class="service-card__header">
+            <span class="service-card__num">01</span>
+            <h3 class="service-card__title">Banhos Terapêuticos &amp; Higiene</h3>
+          </div>
+
+          <p class="service-card__desc">
+            O banho regular mantém a pele e a pelagem limpas, reduz odores e facilita a identificação precoce de nós, irritações ou parasitas.
+          </p>
+
+          <ul class="service-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Avaliação atenta da pele e pelagem</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Shampoo hipoalergênico para cada necessidade</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Limpeza minuciosa de ouvidos e corte de unhas</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Secagem cuidadosa sem estresse térmico</span>
+            </li>
+          </ul>
+
+          <div class="service-card__footer">
+            <div class="service-card__price-box">
+              <span class="price-label">Valor</span>
+              <span class="price-amount">A consultar</span>
+            </div>
+
+            <div class="service-card__actions">
+              <button type="button" class="btn-service-book" data-open-booking data-service="Banho Completo &amp; Higiene">
+                <span>Agendar</span>
+              </button>
+              <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Gostaria%20de%20agendar%20um%20banho." target="_blank" rel="noopener noreferrer" class="btn-service-wa" title="Chamar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Serviço 02: Tosa Bebê -->
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img src="assets/images/IMG_7490.webp" alt="Tosa bebê na tesoura New Pet" loading="lazy">
+            <span class="service-card__badge-cat">100% Tesoura</span>
+          </div>
+
+          <div class="service-card__header">
+            <span class="service-card__num">02</span>
+            <h3 class="service-card__title">Tosa Bebê na Tesoura</h3>
+          </div>
+
+          <p class="service-card__desc">
+            Feita à mão na tesoura, reduz e organiza o comprimento sem tirar a aparência fofinha e delicada do seu filho de quatro patas.
+          </p>
+
+          <ul class="service-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Comprimento alinhado com a rotina do tutor</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Acabamento arredondado e super fofinho</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Preserva a textura natural e leve da pelagem</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Facilita a escovação diária em casa</span>
+            </li>
+          </ul>
+
+          <div class="service-card__footer">
+            <div class="service-card__price-box">
+              <span class="price-label">Valor</span>
+              <span class="price-amount">A consultar</span>
+            </div>
+
+            <div class="service-card__actions">
+              <button type="button" class="btn-service-book" data-open-booking data-service="Tosa Bebê na Tesoura">
+                <span>Agendar</span>
+              </button>
+              <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Quero%20saber%20mais%20sobre%20a%20tosa%20beb%C3%AA." target="_blank" rel="noopener noreferrer" class="btn-service-wa" title="Chamar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Serviço 03: Trimming de Spitz -->
+        <article class="service-card service-card--featured">
+          <div class="service-card__image-wrap">
+            <img src="assets/images/IMG_8765.webp" alt="Spitz Alemão após trimming na New Pet" loading="lazy">
+            <span class="service-card__badge-cat">Especialistas na Raça</span>
+          </div>
+
+          <div class="service-card__header">
+            <span class="service-card__num">03</span>
+            <h3 class="service-card__title">Trimming de Spitz Alemão / Lulu</h3>
+          </div>
+
+          <p class="service-card__desc">
+            Cuidado técnico com a subpelagem: remove os pelos mortos excedentes, valoriza o formato padrão da raça e estimula a renovação dos fios sem raspar.
+          </p>
+
+          <ul class="service-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Remoção profunda de subpelo morto</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Contorno equilibrado e volumoso na tesoura</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Sem raspar (preserva a proteção térmica natural)</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Prevenção de alopecia pós-tosa</span>
+            </li>
+          </ul>
+
+          <div class="service-card__footer">
+            <div class="service-card__price-box">
+              <span class="price-label">Valor</span>
+              <span class="price-amount">A consultar</span>
+            </div>
+
+            <div class="service-card__actions">
+              <button type="button" class="btn-service-book" data-open-booking data-service="Trimming Especializado de Spitz">
+                <span>Agendar</span>
+              </button>
+              <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Gostaria%20de%20agendar%20um%20trimming%20de%20Spitz." target="_blank" rel="noopener noreferrer" class="btn-service-wa" title="Chamar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Serviço 04: Tosa na Lâmina com Rostinho -->
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img src="assets/images/IMG_6937.webp" alt="Tosa na lâmina com rostinho bebê na New Pet" loading="lazy">
+            <span class="service-card__badge-cat">Praticidade &amp; Charme</span>
+          </div>
+
+          <div class="service-card__header">
+            <span class="service-card__num">04</span>
+            <h3 class="service-card__title">Tosa na Lâmina com Rostinho</h3>
+          </div>
+
+          <p class="service-card__desc">
+            O corpinho fica mais curto e fácil de cuidar no dia a dia, enquanto o rostinho é preservado e modelado na tesoura para um acabamento delicado.
+          </p>
+
+          <ul class="service-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Facilita a rotina de limpeza em casa</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Rostinho expressivo e muito charmoso</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Altura da lâmina escolhida sob medida</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Ideal para cães que brincam muito</span>
+            </li>
+          </ul>
+
+          <div class="service-card__footer">
+            <div class="service-card__price-box">
+              <span class="price-label">Valor</span>
+              <span class="price-amount">A consultar</span>
+            </div>
+
+            <div class="service-card__actions">
+              <button type="button" class="btn-service-book" data-open-booking data-service="Tosa na Lâmina com Rostinho na Tesoura">
+                <span>Agendar</span>
+              </button>
+              <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Quero%20agendar%20uma%20tosa%20na%20l%C3%A2mina%20com%20rostinho." target="_blank" rel="noopener noreferrer" class="btn-service-wa" title="Chamar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Serviço 05: Tosa Completa na Lâmina -->
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img src="assets/images/IMG_8666.webp" alt="Tosa completa na lâmina na New Pet" loading="lazy">
+            <span class="service-card__badge-cat">Higiene &amp; Alívio</span>
+          </div>
+
+          <div class="service-card__header">
+            <span class="service-card__num">05</span>
+            <h3 class="service-card__title">Tosa Completa na Lâmina</h3>
+          </div>
+
+          <p class="service-card__desc">
+            Reduz uniformemente a pelagem do corpo e do rosto, aliviando o calor e tornando a rotina de higiene extremamente prática para o tutor.
+          </p>
+
+          <ul class="service-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Acabamento limpo, seguro e uniforme</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Mais conforto para períodos quentes</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Serviço indicado após avaliação técnica</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Ideal para pets com propensão a embolar</span>
+            </li>
+          </ul>
+
+          <div class="service-card__footer">
+            <div class="service-card__price-box">
+              <span class="price-label">Valor</span>
+              <span class="price-amount">A consultar</span>
+            </div>
+
+            <div class="service-card__actions">
+              <button type="button" class="btn-service-book" data-open-booking data-service="Tosa Completa na Lâmina">
+                <span>Agendar</span>
+              </button>
+              <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20tosa%20completa." target="_blank" rel="noopener noreferrer" class="btn-service-wa" title="Chamar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAIS ==================== -->
+  <section class="section-padding section-padding--alt" id="diferenciais">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Por Que Escolher a New Pet?</span>
+        <h2 class="section-title">O padrão de cuidado que Araxá confia</h2>
+        <p class="section-desc">
+          Entendemos que o seu pet é um membro da sua família. Por isso, oferecemos atenção exclusiva em cada etapa do banho e da tosa.
+        </p>
+      </div>
+
+      <div class="differentials-grid">
+        <div class="diff-card">
+          <div class="diff-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3>Cuidado 100% Individualizado</h3>
+          <p>Nada de estresse ou correria. Cada pet tem seu tempo respeitado por profissionais carinhosas e dedicadas.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/><path d="M14.83 9.17a4 4 0 0 0-5.66 5.66"/></svg>
+          </div>
+          <h3>Especialistas em Spitz &amp; Pelagem Dupla</h3>
+          <p>Técnicas de trimming que respeitam o subpelo natural sem raspar, evitando falhas e preservando a saúde da pelagem.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Cosméticos Profissionais de Alto Padrão</h3>
+          <p>Produtos dermatologicamente seguros, hipoalergênicos e com perfume suave para não irritar o olfato dos pets.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <h3>Estrutura Integrada com Veterinário</h3>
+          <p>Tudo o que seu companheiro precisa em um só endereço em Araxá: banho e tosa, loja pet completa e médico veterinário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOJA PET & FARMÁCIA ==================== -->
+  <section class="section-padding" id="loja">
+    <div class="container shop-section__grid">
+      <div class="shop-gallery">
+        <div class="shop-gallery__main">
+          <img src="assets/images/loja-interior.webp" alt="Interior aconchegante da loja New Pet em Araxá" loading="lazy">
+        </div>
+        <div class="shop-gallery__thumbnails">
+          <img src="assets/images/loja-caes.webp" alt="Produtos e acessórios para cães na New Pet" loading="lazy">
+          <img src="assets/images/loja-gatos.webp" alt="Artigos especiais para gatos na New Pet" loading="lazy">
+          <img src="assets/images/loja-fachada.webp" alt="Fachada da New Pet na Av. Honório de Paiva Abreu em Araxá" loading="lazy">
+        </div>
+      </div>
+
+      <div class="shop-content">
+        <span class="section-tag">Muito Além do Banho e Tosa</span>
+        <h2 class="section-title">Tudo para cuidar do seu pet em um só lugar.</h2>
+        <p class="section-desc">
+          Na loja New Pet você encontra uma curadoria completa de produtos para a rotina, alimentação de qualidade e os momentos mais felizes do seu parceiro.
+        </p>
+
+        <div class="shop-pills-list">
+          <span class="shop-pill">Rações Premium &amp; Super Premium</span>
+          <span class="shop-pill">Petiscos Selecionados</span>
+          <span class="shop-pill">Higiene &amp; Estética</span>
+          <span class="shop-pill">Antiparasitários</span>
+          <span class="shop-pill">Brinquedos Interativos</span>
+          <span class="shop-pill">Acessórios &amp; Coleiras</span>
+          <span class="shop-pill">Linha Completa de Medicamentos</span>
+        </div>
+
+        <p class="shop-note">
+          Tem dúvida sobre qual ração ou medicação escolher? Nossa equipe te orienta com o maior carinho!
+        </p>
+
+        <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20um%20produto%20na%20loja." target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>Consultar Produtos pelo WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ATENDIMENTO VETERINÁRIO ==================== -->
+  <section class="section-padding section-padding--alt" id="veterinario">
+    <div class="container">
+      <div class="vet-banner">
+        <div class="vet-banner__left">
+          <div class="vet-badge-icon">+</div>
+          <div>
+            <span class="vet-banner__tag">Saúde &amp; Acompanhamento</span>
+            <h2 class="vet-banner__title">Atendimento Veterinário na New Pet</h2>
+            <p class="vet-banner__text">
+              Além dos cuidados de estética animal, seu pet conta com acompanhamento veterinário em um ambiente acolhedor e que ele já conhece e confia.
+            </p>
+          </div>
+        </div>
+
+        <div class="vet-banner__schedule">
+          <div class="vet-schedule-card">
+            <strong>Segunda a Sexta</strong>
+            <span>A partir das 16:00h</span>
+          </div>
+          <div class="vet-schedule-card">
+            <strong>Sábados</strong>
+            <span>Consulte disponibilidade</span>
+          </div>
+          <button type="button" class="btn-vet-book" data-open-booking data-service="Atendimento Veterinário">
+            Agendar Consulta Veterinária &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AVALIAÇÕES DE CLIENTES ==================== -->
+  <section class="section-padding" id="avaliacoes">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Carinho Que Volta</span>
+        <h2 class="section-title">O que os nossos clientes dizem</h2>
+        <p class="section-desc">
+          Cada mensagem de carinho confirma o que mais importa para nós: pets bem cuidados e tutores tranquilos.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “O melhor! Amamos o trabalho de vocês. Obrigada pelo carinho com a Aurora e a Sofia, elas ficaram lindas demais.”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Tutora da Aurora e Sofia</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “Um excelente atendimento e um ambiente tranquilo e acolhedor, onde deixei minha cachorra em excelentes mãos. Temos o melhor banho e tosa de Araxá.”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Cliente Satisfeito</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “Vocês são maravilhosas! Ele sempre chega muito lindo, cheiroso e bem cuidado. Só temos a agradecer a dedicação.”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Tutor Dedicado</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “Tudo perfeito. Gostei muito do penteado. Eles ficaram lindos e com os pelos bem sedosos. Huguinho ficou branquinho de novo.”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Tutora do Huguinho</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “Obrigada pelo carinho e cuidado com ele. Chegou super feliz e se sentiu amado aí. Já indiquei para várias amigas!”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Cliente Indicadora</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            “Ficou perfeito. Parabéns pelo excelente trabalho e dedicação. Nunca pensei que seriam tão bem tratados assim.”
+          </p>
+          <div class="testimonial-card__author">
+            <strong>Tutor Encantado</strong>
+            <span>Cliente New Pet &bull; Araxá</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HORÁRIOS & LOCALIZAÇÃO ==================== -->
+  <section class="section-padding section-padding--alt" id="horarios">
+    <div class="container">
+      <div class="hours-location-grid">
+        <!-- Horários -->
+        <div class="hours-card">
+          <div class="hours-card__header">
+            <div class="hours-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h3>Horários de Atendimento</h3>
+              <p>Planejamento para o conforto do seu pet</p>
+            </div>
+          </div>
+
+          <ul class="hours-list">
+            <li class="hours-list__item">
+              <span class="day">Segunda-feira</span>
+              <span class="time">12:00 às 18:00</span>
+            </li>
+            <li class="hours-list__item is-featured">
+              <span class="day">Terça a Sexta-feira</span>
+              <span class="time">08:00 às 18:00</span>
+            </li>
+            <li class="hours-list__item">
+              <span class="day">Sábado</span>
+              <span class="time">08:00 às 15:00</span>
+            </li>
+            <li class="hours-list__item is-closed">
+              <span class="day">Domingo</span>
+              <span class="time">Fechado (Descanso dos Pets)</span>
+            </li>
+          </ul>
+
+          <div class="hours-card__tip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span>Dica: Agende com antecedência para garantir o melhor horário para o seu pet!</span>
+          </div>
+        </div>
+
+        <!-- Localização -->
+        <div class="location-card">
+          <div class="location-card__header">
+            <div class="location-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h3>Venha nos Conhecer</h3>
+              <p>Estrutura fácil de chegar e estacionar</p>
+            </div>
+          </div>
+
+          <div class="location-details">
+            <p class="location-address">
+              <strong>New Pet Banho e Tosa</strong><br>
+              Av. Honório de Paiva Abreu, 245<br>
+              Araxá – MG &bull; CEP 38180-000
+            </p>
+
+            <div class="location-contact-chips">
+              <a href="tel:+5534997063456" class="contact-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>(34) 9 9706-3456</span>
+              </a>
+
+              <a href="https://instagram.com/newpetaraxa" target="_blank" rel="noopener noreferrer" class="contact-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <span>@newpetaraxa</span>
+              </a>
+            </div>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Hon%C3%B3rio+de+Paiva+Abreu,+245+-+Arax%C3%A1+-+MG" target="_blank" rel="noopener noreferrer" class="btn-location-map">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <span>Abrir no Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="footer__brand">
+          <img src="assets/images/logo-clean.png" alt="New Pet" class="footer__logo-img">
+          <div>
+            <h3>new pet</h3>
+            <p>Banho e Tosa &bull; Araxá - MG</p>
+          </div>
+        </div>
+        <p class="footer__bio">
+          Cuidado de verdade, do banho ao último acabamento. Atendimento carinhoso, tosa na tesoura e saúde integrada em Araxá - MG.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Navegação</h4>
+        <ul class="footer__links-list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#loja">Loja Pet</a></li>
+          <li><a href="#veterinario">Atendimento Veterinário</a></li>
+          <li><a href="#horarios">Horários de Funcionamento</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Contato &amp; Endereço</h4>
+        <ul class="footer__links-list">
+          <li><a href="https://wa.me/5534997063456" target="_blank" rel="noopener noreferrer">WhatsApp: (34) 9 9706-3456</a></li>
+          <li><a href="https://instagram.com/newpetaraxa" target="_blank" rel="noopener noreferrer">Instagram: @newpetaraxa</a></li>
+          <li><span>Av. Honório de Paiva Abreu, 245 &bull; Araxá</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Equipe New Pet</h4>
+        <p style="color: rgba(255,255,255,0.65); font-size: 0.88rem; margin-bottom: 14px;">
+          Painel de gestão de agendamentos e controle da agenda da equipe.
+        </p>
+        <a href="admin.html" class="btn-footer-admin">
+          Acessar Painel da Equipe &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; 2026 New Pet Banho e Tosa &bull; Todos os direitos reservados.</p>
+      <p>Desenvolvido para o bem-estar animal em Araxá - MG.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+  <a href="https://wa.me/5534997063456?text=Ol%C3%A1%20New%20Pet!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar no WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <span>Agendar pelo WhatsApp</span>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="js/booking-store.js"></script>
+  <script src="js/booking-modal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
